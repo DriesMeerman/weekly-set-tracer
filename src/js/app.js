@@ -100,6 +100,9 @@ class SetsByMuscleApp {
       }
     });
 
+    // Mobile-friendly touch improvements
+    this.setupMobileOptimizations();
+
 
 
     // Data management
@@ -471,6 +474,60 @@ class SetsByMuscleApp {
 
       // Insert the error message at the top of main content
       mainContent.insertBefore(errorContainer, mainContent.firstChild);
+    }
+  }
+
+  setupMobileOptimizations() {
+    // Add mobile-specific event listeners and optimizations
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      console.log('📱 Mobile device detected, applying optimizations');
+
+      // Prevent double-tap zoom on buttons
+      const buttons = document.querySelectorAll('.btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('touchend', (e) => {
+          e.preventDefault();
+          btn.click();
+        });
+      });
+
+      // Add touch feedback for search results
+      const searchResults = document.getElementById('search-results');
+      if (searchResults) {
+        searchResults.addEventListener('touchstart', (e) => {
+          const target = e.target.closest('.search-result-item');
+          if (target) {
+            target.style.backgroundColor = 'var(--bg-tertiary)';
+          }
+        });
+
+        searchResults.addEventListener('touchend', (e) => {
+          const target = e.target.closest('.search-result-item');
+          if (target) {
+            target.style.backgroundColor = '';
+          }
+        });
+      }
+
+      // Optimize input fields for mobile
+      const inputs = document.querySelectorAll('input[type="text"], input[type="number"]');
+      inputs.forEach(input => {
+        // Prevent zoom on iOS
+        input.style.fontSize = '16px';
+
+        // Add mobile-friendly focus styles
+        input.addEventListener('focus', () => {
+          input.style.borderColor = 'var(--primary-color)';
+          input.style.boxShadow = '0 0 0 3px rgb(37 99 235 / 0.1)';
+        });
+
+        input.addEventListener('blur', () => {
+          input.style.borderColor = '';
+          input.style.boxShadow = '';
+        });
+      });
     }
   }
 
