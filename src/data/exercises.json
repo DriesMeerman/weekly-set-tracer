@@ -1,0 +1,215 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-27",
+  "exercises": [
+    {
+      "id": "bench",
+      "name": "bench",
+      "displayName": "Bench Press",
+      "aliases": ["bench press", "bench", "chest press"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Triceps": 0.5,
+        "Front Delts": 0.33
+      },
+      "category": "push",
+      "description": "Compound chest exercise that primarily targets chest with secondary triceps and front deltoid activation"
+    },
+    {
+      "id": "squat",
+      "name": "squat",
+      "displayName": "Squat",
+      "aliases": ["squat", "back squat", "barbell squat"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.5,
+        "Hamstrings": 0.33
+      },
+      "category": "legs",
+      "description": "Compound leg exercise that primarily targets quadriceps with secondary glute and hamstring activation"
+    },
+    {
+      "id": "deadlift",
+      "name": "deadlift",
+      "displayName": "Deadlift",
+      "aliases": ["deadlift", "conventional deadlift", "barbell deadlift"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.5,
+        "Back": 0.5
+      },
+      "category": "pull",
+      "description": "Compound posterior chain exercise that primarily targets hamstrings with secondary glute and back activation"
+    },
+    {
+      "id": "row",
+      "name": "row",
+      "displayName": "Barbell Row",
+      "aliases": ["row", "barbell row", "pendlay row", "bent over row"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Lats": 0.5,
+        "Biceps": 0.33
+      },
+      "category": "pull",
+      "description": "Compound back exercise that primarily targets back muscles with secondary lat and bicep activation"
+    },
+    {
+      "id": "ohp",
+      "name": "ohp",
+      "displayName": "Overhead Press",
+      "aliases": ["ohp", "overhead press", "shoulder press", "military press", "press"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Triceps": 0.5,
+        "Chest": 0.25
+      },
+      "category": "push",
+      "description": "Compound shoulder exercise that primarily targets front deltoids with secondary tricep and chest activation"
+    },
+    {
+      "id": "hip-thrust",
+      "name": "hip-thrust",
+      "displayName": "Hip Thrust",
+      "aliases": ["hip thrust", "glute bridge", "barbell hip thrust"],
+      "muscleGroups": {
+        "Glutes": 1.0,
+        "Hamstrings": 0.33
+      },
+      "category": "legs",
+      "description": "Isolation exercise that primarily targets glutes with secondary hamstring activation"
+    },
+    {
+      "id": "hamstring-curl",
+      "name": "hamstring-curl",
+      "displayName": "Hamstring Curl",
+      "aliases": ["hamstring curl", "leg curl", "lying leg curl"],
+      "muscleGroups": {
+        "Hamstrings": 1.0
+      },
+      "category": "legs",
+      "description": "Isolation exercise that specifically targets hamstrings"
+    },
+    {
+      "id": "lat-raise",
+      "name": "lat-raise",
+      "displayName": "Lateral Raise",
+      "aliases": ["lat raise", "lateral raise", "side raise", "dumbbell lateral raise"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Rear Delts": 0.25
+      },
+      "category": "push",
+      "description": "Isolation exercise that primarily targets front deltoids with light rear deltoid activation"
+    },
+    {
+      "id": "calf-raise",
+      "name": "calf-raise",
+      "displayName": "Calf Raise",
+      "aliases": ["calf raise", "standing calf raise", "seated calf raise"],
+      "muscleGroups": {
+        "Calves": 1.0
+      },
+      "category": "legs",
+      "description": "Isolation exercise that specifically targets calf muscles"
+    },
+    {
+      "id": "core",
+      "name": "core",
+      "displayName": "Core Exercise",
+      "aliases": ["plank", "crunch", "sit-up", "ab wheel", "dead bug", "bird dog"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Core strengthening exercises including planks, crunches, and other abdominal movements"
+    },
+    {
+      "id": "curl",
+      "name": "curl",
+      "displayName": "Bicep Curl",
+      "aliases": ["curl", "bicep curl", "dumbbell curl", "barbell curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Isolation exercise that specifically targets biceps"
+    },
+    {
+      "id": "triceps",
+      "name": "triceps",
+      "displayName": "Tricep Extension",
+      "aliases": ["tricep extension", "skull crusher", "overhead extension", "dip"],
+      "muscleGroups": {
+        "Triceps": 1.0
+      },
+      "category": "push",
+      "description": "Isolation exercise that specifically targets triceps"
+    },
+    {
+      "id": "pull-up",
+      "name": "pull-up",
+      "displayName": "Pull-up",
+      "aliases": ["pull-up", "chin-up", "assisted pull-up"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Lats": 0.8,
+        "Biceps": 0.4
+      },
+      "category": "pull",
+      "description": "Compound upper body exercise that primarily targets back and lats with secondary bicep activation"
+    },
+    {
+      "id": "dip",
+      "name": "dip",
+      "displayName": "Dip",
+      "aliases": ["dip", "parallel bar dip", "bench dip"],
+      "muscleGroups": {
+        "Chest": 0.6,
+        "Triceps": 1.0,
+        "Front Delts": 0.4
+      },
+      "category": "push",
+      "description": "Compound upper body exercise that primarily targets triceps with secondary chest and front deltoid activation"
+    },
+    {
+      "id": "lunge",
+      "name": "lunge",
+      "displayName": "Lunge",
+      "aliases": ["lunge", "forward lunge", "reverse lunge", "walking lunge"],
+      "muscleGroups": {
+        "Quads": 0.8,
+        "Glutes": 0.6,
+        "Hamstrings": 0.4
+      },
+      "category": "legs",
+      "description": "Compound leg exercise that targets quadriceps, glutes, and hamstrings with unilateral movement"
+    }
+  ],
+  "categories": {
+    "push": "Exercises that involve pushing movements (chest, shoulders, triceps)",
+    "pull": "Exercises that involve pulling movements (back, biceps)",
+    "legs": "Exercises that primarily target lower body muscles",
+    "core": "Exercises that target abdominal and core muscles"
+  },
+  "muscleGroups": [
+    "Chest",
+    "Back",
+    "Lats",
+    "Traps",
+    "Rear Delts",
+    "Front Delts",
+    "Biceps",
+    "Triceps",
+    "Quads",
+    "Hamstrings",
+    "Glutes",
+    "Calves",
+    "Core"
+  ],
+  "defaultTargets": {
+    "min": 10,
+    "max": 15
+  },
+  "windowOptions": [3, 7, 14, 28]
+}
