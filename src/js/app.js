@@ -22,7 +22,7 @@ class SetsByMuscleApp {
     this.init();
   }
 
-    async init() {
+      async init() {
     try {
       console.log('🏋️  Initializing Sets by Muscle...');
 
@@ -44,7 +44,13 @@ class SetsByMuscleApp {
 
     } catch (error) {
       console.error('❌ Failed to initialize app:', error);
-      this.showError('Failed to initialize application. Please refresh the page.');
+
+      // Check if it's a database loading error
+      if (error.message.includes('exercise database')) {
+        this.showDatabaseError(error.message);
+      } else {
+        this.showError('Failed to initialize application. Please refresh the page.');
+      }
     }
   }
 
@@ -94,11 +100,7 @@ class SetsByMuscleApp {
       }
     });
 
-    // Manual entry functionality
-    const manualAddBtn = document.getElementById('manual-add-btn');
-    if (manualAddBtn) {
-      manualAddBtn.addEventListener('click', () => this.handleManualAdd());
-    }
+
 
     // Data management
     const exportBtn = document.getElementById('export-btn');
@@ -280,37 +282,7 @@ class SetsByMuscleApp {
     this.selectedExercise = null;
   }
 
-  async handleManualAdd() {
-    const selectedMuscles = this.getSelectedMuscles();
-    const setsInput = document.getElementById('manual-sets');
 
-    if (!setsInput) return;
-
-    const sets = parseFloat(setsInput.value);
-    if (isNaN(sets) || sets <= 0) {
-      this.showFeedback('Please enter a valid number of sets.', 'error');
-      return;
-    }
-
-    if (selectedMuscles.length === 0) {
-      this.showFeedback('Please select at least one muscle group.', 'error');
-      return;
-    }
-
-    try {
-      await this.trainingTracker.addManualEntry(selectedMuscles, sets, this.currentDate);
-      this.showFeedback(`Added ${sets} sets to ${selectedMuscles.join(', ')}`, 'success');
-      this.updateUI();
-    } catch (error) {
-      this.showFeedback('Failed to add manual entry. Please try again.', 'error');
-      console.error('Manual add error:', error);
-    }
-  }
-
-  getSelectedMuscles() {
-    const checkboxes = document.querySelectorAll('#muscle-checkboxes input[type="checkbox"]:checked');
-    return Array.from(checkboxes).map(cb => cb.value);
-  }
 
   async handleExport() {
     try {
@@ -460,6 +432,46 @@ class SetsByMuscleApp {
 
   showError(message) {
     this.showFeedback(message, 'error');
+  }
+
+  showDatabaseError(errorMessage) {
+    // Hide the main content and show database error
+    const mainContent = document.querySelector('.main-content');
+    const exerciseSearch = document.querySelector('.exercise-search-section');
+
+    if (mainContent && exerciseSearch) {
+      // Hide the exercise search section
+      exerciseSearch.style.display = 'none';
+
+      // Create and show database error message
+      const errorContainer = document.createElement('div');
+      errorContainer.className = 'database-error-container';
+      errorContainer.innerHTML = `
+        <div class="database-error">
+          <div class="error-icon">⚠️</div>
+          <h2>Exercise Database Error</h2>
+          <p>There was a problem loading the exercise database:</p>
+          <div class="error-details">
+            <code>${errorMessage}</code>
+          </div>
+          <div class="error-help">
+            <h3>How to fix this:</h3>
+            <ol>
+              <li><strong>Check the exercises.json file</strong> - Make sure it's valid JSON (no comments, proper syntax)</li>
+              <li><strong>Validate the data</strong> - Run <code>npm run data:validate</code> to check for errors</li>
+              <li><strong>Check the browser console</strong> - Look for detailed error messages</li>
+              <li><strong>Refresh the page</strong> - After fixing the data file</li>
+            </ol>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="location.reload()">
+            🔄 Refresh Page
+          </button>
+        </div>
+      `;
+
+      // Insert the error message at the top of main content
+      mainContent.insertBefore(errorContainer, mainContent.firstChild);
+    }
   }
 
   formatDate(date) {

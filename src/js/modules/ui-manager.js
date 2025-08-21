@@ -11,34 +11,10 @@ export class UIManager {
 
   init() {
     console.log('🎨 UI manager initialized');
-    this.setupMuscleCheckboxes();
     this.setupMuscleFilters();
   }
 
-  setupMuscleCheckboxes() {
-    const container = document.getElementById('muscle-checkboxes');
-    if (!container) return;
 
-    container.innerHTML = '';
-
-    this.muscleGroups.forEach(muscle => {
-      const checkbox = document.createElement('div');
-      checkbox.className = 'muscle-checkbox';
-
-      const input = document.createElement('input');
-      input.type = 'checkbox';
-      input.id = `muscle-${muscle.toLowerCase().replace(/\s+/g, '-')}`;
-      input.value = muscle;
-
-      const label = document.createElement('label');
-      label.htmlFor = input.id;
-      label.textContent = muscle;
-
-      checkbox.appendChild(input);
-      checkbox.appendChild(label);
-      container.appendChild(checkbox);
-    });
-  }
 
   setupMuscleFilters() {
     const filter = document.getElementById('muscle-filter');
@@ -137,7 +113,7 @@ export class UIManager {
     });
   }
 
-    createEntryElement(entry) {
+      createEntryElement(entry) {
     const div = document.createElement('div');
     div.className = 'entry-item';
     div.style.padding = 'var(--spacing-sm)';
@@ -158,18 +134,6 @@ export class UIManager {
           <span style="color: var(--primary-color); font-weight: 600;">
             ${entry.sets} sets
           </span>
-        </div>
-      `;
-    } else {
-      // Handle manual entries
-      const type = entry.type === 'manual' ? 'Manual' : 'Quick Add';
-      const muscles = Object.keys(entry.muscleSets).join(', ');
-      const sets = Object.values(entry.muscleSets).reduce((sum, val) => sum + val, 0);
-
-      div.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span><strong>${type}</strong>: ${muscles}</span>
-          <span style="color: var(--primary-color); font-weight: 600;">${sets.toFixed(1)} sets</span>
         </div>
       `;
     }

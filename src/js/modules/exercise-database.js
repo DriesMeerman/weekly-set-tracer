@@ -10,58 +10,46 @@ export class ExerciseDatabase {
     this.windowOptions = [3, 7, 14, 28];
   }
 
-  async init() {
+    async init() {
     try {
       console.log('📚 Loading exercise database...');
 
       // Load from the JSON file
       const response = await fetch('/data/exercises.json');
       if (!response.ok) {
-        throw new Error('Failed to load exercise database');
+        throw new Error(`Failed to load exercise database: ${response.status} ${response.statusText}`);
       }
 
-      const data = await response.json();
+      const text = await response.text();
+      let data;
+
+      try {
+        data = JSON.parse(text);
+      } catch (parseError) {
+        console.error('❌ JSON parsing error:', parseError);
+        console.error('❌ First 200 characters of response:', text.substring(0, 200));
+        throw new Error(`Invalid JSON format: ${parseError.message}`);
+      }
+
+      // Validate required fields
+      if (!data.exercises || !Array.isArray(data.exercises)) {
+        throw new Error('Invalid exercise database: missing or invalid exercises array');
+      }
+
       this.exercises = data.exercises;
-      this.muscleGroups = data.muscleGroups;
-      this.categories = data.categories;
-      this.defaultTargets = data.defaultTargets;
-      this.windowOptions = data.windowOptions;
+      this.muscleGroups = data.muscleGroups || [];
+      this.categories = data.categories || {};
+      this.defaultTargets = data.defaultTargets || { min: 10, max: 15 };
+      this.windowOptions = data.windowOptions || [3, 7, 14, 28];
 
       console.log(`✅ Loaded ${this.exercises.length} exercises from JSON`);
+      console.log(`💪 Muscle groups: ${this.muscleGroups.length}`);
+      console.log(`📂 Categories: ${Object.keys(this.categories).length}`);
 
     } catch (error) {
       console.error('❌ Failed to load exercise database:', error);
-      // Fallback to basic structure
-      this.exercises = [
-        {
-          id: 'bench',
-          name: 'bench',
-          displayName: 'Bench Press',
-          aliases: ['bench press', 'bench', 'chest press', 'barbell bench', 'flat bench'],
-          muscleGroups: {
-            'Chest': 1.0,
-            'Triceps': 0.5,
-            'Front Delts': 0.33
-          },
-          category: 'push',
-          description: 'Compound chest exercise that primarily targets chest with secondary triceps and front deltoid activation',
-          defaultReps: 8,
-          defaultSets: 3,
-          equipment: ['barbell', 'bench'],
-          difficulty: 'intermediate'
-        }
-      ];
-      this.muscleGroups = [
-        'Chest', 'Back', 'Lats', 'Traps', 'Rear Delts', 'Front Delts',
-        'Biceps', 'Triceps', 'Quads', 'Hamstrings', 'Glutes', 'Calves', 'Core'
-      ];
-      this.categories = {
-        push: 'Exercises that involve pushing movements',
-        pull: 'Exercises that involve pulling movements',
-        legs: 'Exercises that primarily target lower body muscles',
-        core: 'Exercises that target abdominal and core muscles'
-      };
-      console.log('⚠️ Using fallback exercise data');
+      // Don't use fallback data - let the error bubble up to the UI
+      throw new Error(`Failed to load exercise database: ${error.message}`);
     }
   }
 

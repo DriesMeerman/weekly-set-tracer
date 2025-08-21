@@ -74,33 +74,7 @@ export class TrainingTracker {
     this.saveToStorage();
   }
 
-  async addManualEntry(muscles, sets, date) {
-    const dateKey = this.formatDate(date);
 
-    if (!this.trainingDays.has(dateKey)) {
-      this.trainingDays.set(dateKey, {
-        id: dateKey,
-        note: '',
-        entries: []
-      });
-    }
-
-    const day = this.trainingDays.get(dateKey);
-    const muscleSets = {};
-    muscles.forEach(muscle => {
-      muscleSets[muscle] = sets;
-    });
-
-    const entry = {
-      id: `e_${Date.now()}`,
-      type: 'manual',
-      muscleSets,
-      timestamp: Date.now()
-    };
-
-    day.entries.push(entry);
-    this.saveToStorage();
-  }
 
   async updateDayNote(date, note) {
     const dateKey = this.formatDate(date);

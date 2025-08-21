@@ -1,6 +1,6 @@
 {
-  "version": "1.0.0",
-  "lastUpdated": "2025-01-27",
+  "version": "1.1.0",
+  "lastUpdated": "2025-08-21",
   "exercises": [
     {
       "id": "bench",
@@ -188,6 +188,953 @@
       },
       "category": "legs",
       "description": "Compound leg exercise that targets quadriceps, glutes, and hamstrings with unilateral movement"
+    },
+
+
+    {
+      "id": "incline-bench",
+      "name": "incline-bench",
+      "displayName": "Incline Bench Press",
+      "aliases": ["incline bench", "incline barbell bench", "incline chest press"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Front Delts": 0.66,
+        "Triceps": 0.5
+      },
+      "category": "push",
+      "description": "Bench press performed on an incline bench emphasizing upper chest and anterior deltoids",
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "dumbbell-bench",
+      "name": "dumbbell-bench",
+      "displayName": "Dumbbell Bench Press",
+      "aliases": ["db bench", "dumbbell chest press"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Triceps": 0.5,
+        "Front Delts": 0.33
+      },
+      "category": "push",
+      "description": "Flat bench press using dumbbells allowing greater range of motion and unilateral stability",
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "incline-dumbbell-bench",
+      "name": "incline-dumbbell-bench",
+      "displayName": "Incline Dumbbell Bench",
+      "aliases": ["incline db bench", "incline dumbbell press"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Front Delts": 0.66,
+        "Triceps": 0.5
+      },
+      "category": "push",
+      "description": "Incline bench press with dumbbells targeting upper chest and shoulders",
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "decline-bench",
+      "name": "decline-bench",
+      "displayName": "Decline Bench Press",
+      "aliases": ["decline bench", "decline chest press"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Triceps": 0.5,
+        "Front Delts": 0.25
+      },
+      "category": "push",
+      "description": "Bench press performed on a decline bench emphasizing lower chest",
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "push-up",
+      "name": "push-up",
+      "displayName": "Push-up",
+      "aliases": ["pushup", "incline push-up", "decline push-up"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Triceps": 0.5,
+        "Front Delts": 0.33
+      },
+      "category": "push",
+      "description": "Bodyweight pressing movement targeting chest, triceps, and shoulders",
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "chest-fly-dumbbell",
+      "name": "chest-fly-dumbbell",
+      "displayName": "Dumbbell Chest Fly",
+      "aliases": ["db fly", "dumbbell fly", "flat fly"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Front Delts": 0.25
+      },
+      "category": "push",
+      "description": "Isolation movement emphasizing horizontal adduction of the shoulder to target chest",
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "cable-fly",
+      "name": "cable-fly",
+      "displayName": "Cable Fly",
+      "aliases": ["cable chest fly", "standing cable fly", "high-to-low fly", "low-to-high fly"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Front Delts": 0.25
+      },
+      "category": "push",
+      "description": "Cable-based chest isolation allowing constant tension across range of motion",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "pec-deck",
+      "name": "pec-deck",
+      "displayName": "Pec Deck",
+      "aliases": ["machine fly", "pec deck fly"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Front Delts": 0.2
+      },
+      "category": "push",
+      "description": "Machine-assisted chest fly providing guided movement and stability",
+      "equipment": ["machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "machine-chest-press",
+      "name": "machine-chest-press",
+      "displayName": "Machine Chest Press",
+      "aliases": ["plate-loaded chest press", "selectorized chest press"],
+      "muscleGroups": {
+        "Chest": 1.0,
+        "Triceps": 0.5,
+        "Front Delts": 0.33
+      },
+      "category": "push",
+      "description": "Chest press on a machine for added stability and safe failure",
+      "equipment": ["machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "dumbbell-shoulder-press",
+      "name": "dumbbell-shoulder-press",
+      "displayName": "Dumbbell Shoulder Press",
+      "aliases": ["db shoulder press", "seated dumbbell press"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Triceps": 0.5,
+        "Chest": 0.2
+      },
+      "category": "push",
+      "description": "Overhead pressing with dumbbells emphasizing anterior deltoids",
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "arnold-press",
+      "name": "arnold-press",
+      "displayName": "Arnold Press",
+      "aliases": ["rotational dumbbell press"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Triceps": 0.5
+      },
+      "category": "push",
+      "description": "Rotational dumbbell shoulder press that increases anterior deltoid range of motion",
+      "equipment": ["dumbbells"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "landmine-press",
+      "name": "landmine-press",
+      "displayName": "Landmine Press",
+      "aliases": ["half-kneeling landmine press", "single-arm landmine press"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Chest": 0.3,
+        "Triceps": 0.4
+      },
+      "category": "push",
+      "description": "Angled barbell press using a landmine attachment; shoulder-friendly pressing arc",
+      "equipment": ["barbell", "landmine"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "front-raise",
+      "name": "front-raise",
+      "displayName": "Front Raise",
+      "aliases": ["dumbbell front raise", "plate front raise"],
+      "muscleGroups": {
+        "Front Delts": 1.0
+      },
+      "category": "push",
+      "description": "Shoulder flexion isolation targeting the anterior deltoids",
+      "equipment": ["dumbbells", "plate"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "tricep-pushdown",
+      "name": "tricep-pushdown",
+      "displayName": "Tricep Pushdown",
+      "aliases": ["cable pushdown", "rope pushdown", "bar pushdown"],
+      "muscleGroups": {
+        "Triceps": 1.0
+      },
+      "category": "push",
+      "description": "Cable isolation exercise focusing on elbow extension to target triceps",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "overhead-tricep-extension",
+      "name": "overhead-tricep-extension",
+      "displayName": "Overhead Tricep Extension",
+      "aliases": ["db overhead extension", "rope overhead extension"],
+      "muscleGroups": {
+        "Triceps": 1.0
+      },
+      "category": "push",
+      "description": "Elbow extension performed overhead to emphasize long head of triceps",
+      "equipment": ["dumbbells", "cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "close-grip-bench",
+      "name": "close-grip-bench",
+      "displayName": "Close-Grip Bench Press",
+      "aliases": ["cgbp", "narrow grip bench"],
+      "muscleGroups": {
+        "Triceps": 1.0,
+        "Chest": 0.6,
+        "Front Delts": 0.3
+      },
+      "category": "push",
+      "description": "Bench press variation with narrow grip emphasizing triceps",
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "diamond-push-up",
+      "name": "diamond-push-up",
+      "displayName": "Diamond Push-up",
+      "aliases": ["triangle push-up"],
+      "muscleGroups": {
+        "Triceps": 1.0,
+        "Chest": 0.6,
+        "Front Delts": 0.3
+      },
+      "category": "push",
+      "description": "Push-up with hands together forming a diamond to emphasize triceps",
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "machine-shoulder-press",
+      "name": "machine-shoulder-press",
+      "displayName": "Machine Shoulder Press",
+      "aliases": ["seated shoulder press machine"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Triceps": 0.5
+      },
+      "category": "push",
+      "description": "Guided overhead press on a machine for stability and safety",
+      "equipment": ["machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "cable-lateral-raise",
+      "name": "cable-lateral-raise",
+      "displayName": "Cable Lateral Raise",
+      "aliases": ["standing cable lateral raise"],
+      "muscleGroups": {
+        "Front Delts": 1.0,
+        "Rear Delts": 0.2
+      },
+      "category": "push",
+      "description": "Lateral raise performed with cables to maintain constant tension",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+
+
+    {
+      "id": "lat-pulldown",
+      "name": "lat-pulldown",
+      "displayName": "Lat Pulldown",
+      "aliases": ["wide grip pulldown", "close grip pulldown"],
+      "muscleGroups": {
+        "Lats": 1.0,
+        "Back": 0.66,
+        "Biceps": 0.33
+      },
+      "category": "pull",
+      "description": "Vertical pulling movement using a cable machine to target lats",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "seated-cable-row",
+      "name": "seated-cable-row",
+      "displayName": "Seated Cable Row",
+      "aliases": ["cable row", "close grip row", "wide grip row"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Lats": 0.5,
+        "Biceps": 0.33
+      },
+      "category": "pull",
+      "description": "Horizontal pulling on a cable machine targeting the mid-back",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "t-bar-row",
+      "name": "t-bar-row",
+      "displayName": "T-Bar Row",
+      "aliases": ["landmine row", "v-handle row"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Lats": 0.5,
+        "Biceps": 0.33
+      },
+      "category": "pull",
+      "description": "Chest-supported or landmine-based row emphasizing mid-back thickness",
+      "equipment": ["barbell", "landmine"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "chest-supported-row",
+      "name": "chest-supported-row",
+      "displayName": "Chest-Supported Row",
+      "aliases": ["incline bench row"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Lats": 0.5,
+        "Biceps": 0.33
+      },
+      "category": "pull",
+      "description": "Row performed prone on an incline bench to reduce lower back involvement",
+      "equipment": ["dumbbells", "bench", "machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "one-arm-dumbbell-row",
+      "name": "one-arm-dumbbell-row",
+      "displayName": "One-Arm Dumbbell Row",
+      "aliases": ["single arm row", "db row"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Lats": 0.6,
+        "Biceps": 0.33
+      },
+      "category": "pull",
+      "description": "Unilateral row emphasizing lat engagement and anti-rotation stability",
+      "equipment": ["dumbbell", "bench"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "pullover",
+      "name": "pullover",
+      "displayName": "Dumbbell Pullover",
+      "aliases": ["db pullover", "barbell pullover"],
+      "muscleGroups": {
+        "Lats": 1.0,
+        "Chest": 0.5
+      },
+      "category": "pull",
+      "description": "Shoulder extension movement targeting lats with secondary chest involvement",
+      "equipment": ["dumbbell", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "face-pull",
+      "name": "face-pull",
+      "displayName": "Face Pull",
+      "aliases": ["rope face pull"],
+      "muscleGroups": {
+        "Rear Delts": 1.0,
+        "Traps": 0.5
+      },
+      "category": "pull",
+      "description": "Horizontal pull at face height to target rear deltoids and upper traps",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "rear-delt-fly",
+      "name": "rear-delt-fly",
+      "displayName": "Rear Delt Fly",
+      "aliases": ["reverse fly", "bent-over reverse fly"],
+      "muscleGroups": {
+        "Rear Delts": 1.0,
+        "Traps": 0.25
+      },
+      "category": "pull",
+      "description": "Isolation movement targeting the posterior deltoids",
+      "equipment": ["dumbbells", "machine", "cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "barbell-shrug",
+      "name": "barbell-shrug",
+      "displayName": "Barbell Shrug",
+      "aliases": ["shrug"],
+      "muscleGroups": {
+        "Traps": 1.0
+      },
+      "category": "pull",
+      "description": "Elevation of the shoulders to target upper trapezius",
+      "equipment": ["barbell", "dumbbells"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "rack-pull",
+      "name": "rack-pull",
+      "displayName": "Rack Pull",
+      "aliases": ["partial deadlift"],
+      "muscleGroups": {
+        "Back": 1.0,
+        "Hamstrings": 0.5,
+        "Glutes": 0.5
+      },
+      "category": "pull",
+      "description": "Partial-range deadlift from pins or blocks emphasizing back strength",
+      "equipment": ["barbell", "rack"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "hammer-curl",
+      "name": "hammer-curl",
+      "displayName": "Hammer Curl",
+      "aliases": ["neutral grip curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Curl performed with neutral grip targeting biceps and brachialis",
+      "equipment": ["dumbbells"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "preacher-curl",
+      "name": "preacher-curl",
+      "displayName": "Preacher Curl",
+      "aliases": ["ez bar preacher curl", "machine preacher curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Supported curl variation to minimize momentum and isolate biceps",
+      "equipment": ["ez-bar", "machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "incline-dumbbell-curl",
+      "name": "incline-dumbbell-curl",
+      "displayName": "Incline Dumbbell Curl",
+      "aliases": ["incline curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Curl performed seated on an incline bench to bias long head of biceps",
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "concentration-curl",
+      "name": "concentration-curl",
+      "displayName": "Concentration Curl",
+      "aliases": ["seated concentration curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Strict single-arm curl to isolate biceps",
+      "equipment": ["dumbbell"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "cable-curl",
+      "name": "cable-curl",
+      "displayName": "Cable Curl",
+      "aliases": ["ez bar cable curl", "rope curl"] ,
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Curl using cables to maintain constant tension",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "reverse-curl",
+      "name": "reverse-curl",
+      "displayName": "Reverse Curl",
+      "aliases": ["pronated curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Curl performed with pronated grip to emphasize brachioradialis and biceps",
+      "equipment": ["barbell", "ez-bar"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "ez-bar-curl",
+      "name": "ez-bar-curl",
+      "displayName": "EZ-Bar Curl",
+      "aliases": ["ez curl"],
+      "muscleGroups": {
+        "Biceps": 1.0
+      },
+      "category": "pull",
+      "description": "Biceps curl using an EZ bar for wrist comfort",
+      "equipment": ["ez-bar"],
+      "difficulty": "beginner"
+    },
+
+
+    {
+      "id": "front-squat",
+      "name": "front-squat",
+      "displayName": "Front Squat",
+      "aliases": ["barbell front squat"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.5,
+        "Hamstrings": 0.25
+      },
+      "category": "legs",
+      "description": "Squat variation with barbell in front rack emphasizing quadriceps and upright torso",
+      "equipment": ["barbell", "rack"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "goblet-squat",
+      "name": "goblet-squat",
+      "displayName": "Goblet Squat",
+      "aliases": ["kettlebell goblet squat", "dumbbell goblet squat"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.5
+      },
+      "category": "legs",
+      "description": "Beginner-friendly squat holding a dumbbell or kettlebell at the chest",
+      "equipment": ["dumbbell", "kettlebell"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "box-squat",
+      "name": "box-squat",
+      "displayName": "Box Squat",
+      "aliases": ["squat to box"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.6,
+        "Hamstrings": 0.4
+      },
+      "category": "legs",
+      "description": "Squat to a box to control depth and emphasize posterior chain",
+      "equipment": ["barbell", "box"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "smith-machine-squat",
+      "name": "smith-machine-squat",
+      "displayName": "Smith Machine Squat",
+      "aliases": ["smith squat"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.5
+      },
+      "category": "legs",
+      "description": "Guided squat using a Smith machine for added stability",
+      "equipment": ["smith machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "hack-squat",
+      "name": "hack-squat",
+      "displayName": "Hack Squat (Machine)",
+      "aliases": ["machine hack squat"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.5,
+        "Hamstrings": 0.33
+      },
+      "category": "legs",
+      "description": "Machine-based squat emphasizing quadriceps with guided path",
+      "equipment": ["machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "leg-press",
+      "name": "leg-press",
+      "displayName": "Leg Press",
+      "aliases": ["sled leg press", "horizontal leg press"],
+      "muscleGroups": {
+        "Quads": 1.0,
+        "Glutes": 0.6,
+        "Hamstrings": 0.4
+      },
+      "category": "legs",
+      "description": "Machine compound movement for lower body strength and hypertrophy",
+      "equipment": ["machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "bulgarian-split-squat",
+      "name": "bulgarian-split-squat",
+      "displayName": "Bulgarian Split Squat",
+      "aliases": ["rear-foot elevated split squat", "rfess"],
+      "muscleGroups": {
+        "Quads": 0.9,
+        "Glutes": 0.7,
+        "Hamstrings": 0.4
+      },
+      "category": "legs",
+      "description": "Unilateral squat with rear foot elevated to emphasize quads and glutes",
+      "equipment": ["dumbbells", "bench"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "step-up",
+      "name": "step-up",
+      "displayName": "Step-up",
+      "aliases": ["box step-up"],
+      "muscleGroups": {
+        "Quads": 0.9,
+        "Glutes": 0.7,
+        "Hamstrings": 0.3
+      },
+      "category": "legs",
+      "description": "Unilateral stepping onto a box to develop leg strength and balance",
+      "equipment": ["box", "dumbbells"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "leg-extension",
+      "name": "leg-extension",
+      "displayName": "Leg Extension",
+      "aliases": ["knee extension"],
+      "muscleGroups": {
+        "Quads": 1.0
+      },
+      "category": "legs",
+      "description": "Isolation machine movement for quadriceps",
+      "equipment": ["machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "romanian-deadlift",
+      "name": "romanian-deadlift",
+      "displayName": "Romanian Deadlift",
+      "aliases": ["rdl"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.66,
+        "Back": 0.33
+      },
+      "category": "legs",
+      "description": "Hip-hinge deadlift variation emphasizing hamstrings and glutes",
+      "equipment": ["barbell", "dumbbells"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "stiff-leg-deadlift",
+      "name": "stiff-leg-deadlift",
+      "displayName": "Stiff-Leg Deadlift",
+      "aliases": ["sldl"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.5,
+        "Back": 0.33
+      },
+      "category": "legs",
+      "description": "Deadlift with minimal knee bend to bias hamstrings",
+      "equipment": ["barbell"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "good-morning",
+      "name": "good-morning",
+      "displayName": "Good Morning",
+      "aliases": ["barbell good morning"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.6,
+        "Back": 0.4
+      },
+      "category": "legs",
+      "description": "Hip hinge with bar on back emphasizing posterior chain and spinal erectors",
+      "equipment": ["barbell"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "nordic-curl",
+      "name": "nordic-curl",
+      "displayName": "Nordic Hamstring Curl",
+      "aliases": ["nordic curl", "natural glute ham raise"],
+      "muscleGroups": {
+        "Hamstrings": 1.0
+      },
+      "category": "legs",
+      "description": "Bodyweight hamstring exercise focusing on eccentric strength",
+      "equipment": ["bodyweight"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "glute-ham-raise",
+      "name": "glute-ham-raise",
+      "displayName": "Glute-Ham Raise",
+      "aliases": ["ghr"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.6
+      },
+      "category": "legs",
+      "description": "Posterior chain movement on GHD apparatus targeting hamstrings and glutes",
+      "equipment": ["glute-ham developer"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "cable-pull-through",
+      "name": "cable-pull-through",
+      "displayName": "Cable Pull-Through",
+      "aliases": ["rope pull-through"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.7,
+        "Back": 0.2
+      },
+      "category": "legs",
+      "description": "Hip-hinge using cable machine to target glutes and hamstrings",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "kettlebell-swing",
+      "name": "kettlebell-swing",
+      "displayName": "Kettlebell Swing",
+      "aliases": ["kb swing"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.7,
+        "Back": 0.3,
+        "Core": 0.3
+      },
+      "category": "legs",
+      "description": "Explosive hip-hinge movement building posterior chain power and conditioning",
+      "equipment": ["kettlebell"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "hip-abduction",
+      "name": "hip-abduction",
+      "displayName": "Hip Abduction",
+      "aliases": ["abductor machine", "cable hip abduction", "banded hip abduction"],
+      "muscleGroups": {
+        "Glutes": 1.0
+      },
+      "category": "legs",
+      "description": "Isolation movement targeting gluteus medius and minimus via hip abduction",
+      "equipment": ["machine", "cable machine", "bands"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "hip-adduction",
+      "name": "hip-adduction",
+      "displayName": "Hip Adduction",
+      "aliases": ["adductor machine", "cable hip adduction"],
+      "muscleGroups": {
+        "Hamstrings": 0.2,
+        "Glutes": 0.2,
+        "Quads": 0.2
+      },
+      "category": "legs",
+      "description": "Isolation movement focusing on the hip adductors (inner thigh)",
+      "equipment": ["machine", "cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "sissy-squat",
+      "name": "sissy-squat",
+      "displayName": "Sissy Squat",
+      "aliases": ["bodyweight sissy squat"],
+      "muscleGroups": {
+        "Quads": 1.0
+      },
+      "category": "legs",
+      "description": "Quad-dominant squat variation emphasizing knee extension",
+      "equipment": ["bodyweight", "sissy squat bench"],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "reverse-hyperextension",
+      "name": "reverse-hyperextension",
+      "displayName": "Reverse Hyperextension",
+      "aliases": ["reverse hyper"],
+      "muscleGroups": {
+        "Glutes": 1.0,
+        "Hamstrings": 0.6,
+        "Back": 0.3
+      },
+      "category": "legs",
+      "description": "Hip extension on reverse hyper machine to target glutes and spinal erectors",
+      "equipment": ["reverse hyper machine"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "sled-push",
+      "name": "sled-push",
+      "displayName": "Sled Push",
+      "aliases": ["prowler push"],
+      "muscleGroups": {
+        "Quads": 0.8,
+        "Glutes": 0.6,
+        "Hamstrings": 0.4,
+        "Calves": 0.4,
+        "Core": 0.3
+      },
+      "category": "legs",
+      "description": "Loaded sled drive for lower body strength and conditioning",
+      "equipment": ["sled"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "trap-bar-deadlift",
+      "name": "trap-bar-deadlift",
+      "displayName": "Trap Bar Deadlift",
+      "aliases": ["hex bar deadlift"],
+      "muscleGroups": {
+        "Quads": 0.7,
+        "Glutes": 0.7,
+        "Hamstrings": 0.6,
+        "Back": 0.5
+      },
+      "category": "legs",
+      "description": "Deadlift variation using a trap bar with more upright torso mechanics",
+      "equipment": ["trap bar"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "sumo-deadlift",
+      "name": "sumo-deadlift",
+      "displayName": "Sumo Deadlift",
+      "aliases": ["wide-stance deadlift"],
+      "muscleGroups": {
+        "Hamstrings": 1.0,
+        "Glutes": 0.7,
+        "Back": 0.5,
+        "Quads": 0.4
+      },
+      "category": "pull",
+      "description": "Deadlift with wide stance emphasizing glutes and adductors while reducing range of motion",
+      "equipment": ["barbell"],
+      "difficulty": "advanced"
+    },
+
+
+    {
+      "id": "hanging-leg-raise",
+      "name": "hanging-leg-raise",
+      "displayName": "Hanging Leg Raise",
+      "aliases": ["toes to bar (scaled)", "captain's chair leg raise"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Hip flexion while hanging to target lower abdominals and hip flexors",
+      "equipment": ["pull-up bar"],
+      "difficulty": "intermediate"
+    },
+    {
+      "id": "hanging-knee-raise",
+      "name": "hanging-knee-raise",
+      "displayName": "Hanging Knee Raise",
+      "aliases": ["parallel bars knee raise"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Knee flexion while hanging or supported to target abdominals",
+      "equipment": ["pull-up bar", "dip station"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "cable-crunch",
+      "name": "cable-crunch",
+      "displayName": "Cable Crunch",
+      "aliases": ["kneeling cable crunch"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Spinal flexion against cable resistance to target rectus abdominis",
+      "equipment": ["cable machine"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "side-plank",
+      "name": "side-plank",
+      "displayName": "Side Plank",
+      "aliases": ["side bridge"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Isometric hold emphasizing lateral core stability (obliques)",
+      "equipment": ["bodyweight"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "russian-twist",
+      "name": "russian-twist",
+      "displayName": "Russian Twist",
+      "aliases": ["seated twist"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Rotational core exercise performed seated, optionally with load",
+      "equipment": ["medicine ball", "plate", "dumbbell"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "pallof-press",
+      "name": "pallof-press",
+      "displayName": "Pallof Press",
+      "aliases": ["anti-rotation press"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Anti-rotation isometric press using cable or band to train core stability",
+      "equipment": ["cable machine", "bands"],
+      "difficulty": "beginner"
+    },
+    {
+      "id": "hollow-hold",
+      "name": "hollow-hold",
+      "displayName": "Hollow Body Hold",
+      "aliases": ["hollow hold"],
+      "muscleGroups": {
+        "Core": 1.0
+      },
+      "category": "core",
+      "description": "Gymnastics-style isometric hold strengthening deep core",
+      "equipment": ["bodyweight"],
+      "difficulty": "intermediate"
     }
   ],
   "categories": {
