@@ -39,9 +39,7 @@ export class TrainingTracker {
     }
   }
 
-  async addQuickEntry(text, date) {
-    // This is a placeholder implementation
-    // In the real app, this would parse the text and allocate sets
+    async addExerciseEntry(exercise, sets, reps, weight, date) {
     const dateKey = this.formatDate(date);
 
     if (!this.trainingDays.has(dateKey)) {
@@ -53,22 +51,27 @@ export class TrainingTracker {
     }
 
     const day = this.trainingDays.get(dateKey);
+
+    // Calculate muscle group allocations based on exercise
+    const muscleSets = {};
+    Object.entries(exercise.muscleGroups).forEach(([muscle, allocation]) => {
+      muscleSets[muscle] = sets * allocation;
+    });
+
     const entry = {
       id: `e_${Date.now()}`,
-      type: 'quick',
-      muscleSets: { 'Chest': 3, 'Triceps': 1.5, 'Front Delts': 1 },
-      rawText: text,
+      type: 'exercise',
+      exerciseId: exercise.id,
+      exerciseName: exercise.displayName,
+      sets,
+      reps,
+      weight,
+      muscleSets,
       timestamp: Date.now()
     };
 
     day.entries.push(entry);
     this.saveToStorage();
-
-    return {
-      success: true,
-      sets: 3,
-      exercise: 'bench'
-    };
   }
 
   async addManualEntry(muscles, sets, date) {

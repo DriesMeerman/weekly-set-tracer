@@ -8,7 +8,7 @@ import { UIManager } from './modules/ui-manager.js';
 import { ChartRenderer } from './modules/chart-renderer.js';
 
 class SetsByMuscleApp {
-  constructor() {
+    constructor() {
     this.exerciseDatabase = new ExerciseDatabase();
     this.trainingTracker = new TrainingTracker();
     this.dataManager = new DataManager();
@@ -17,16 +17,18 @@ class SetsByMuscleApp {
 
     this.currentDate = new Date();
     this.windowDays = 7;
+    this.selectedExercise = null;
 
     this.init();
   }
 
-  async init() {
+    async init() {
     try {
       console.log('🏋️  Initializing Sets by Muscle...');
 
       // Initialize components
       await this.exerciseDatabase.init();
+      console.log('📚 Exercise database loaded with', this.exerciseDatabase.getAllExercises().length, 'exercises');
       await this.trainingTracker.init();
       this.dataManager.init();
       this.uiManager.init();
@@ -66,18 +68,31 @@ class SetsByMuscleApp {
       });
     }
 
-    // Quick add functionality
-    const quickAddBtn = document.getElementById('quick-add-btn');
-    const quickAddInput = document.getElementById('quick-add-input');
+        // Exercise search functionality
+    const exerciseSearch = document.getElementById('exercise-search');
+    const searchResults = document.getElementById('search-results');
+    const exerciseDetails = document.getElementById('exercise-details');
+    const addExerciseBtn = document.getElementById('add-exercise-btn');
 
-    if (quickAddBtn && quickAddInput) {
-      quickAddBtn.addEventListener('click', () => this.handleQuickAdd());
-      quickAddInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          this.handleQuickAdd();
-        }
+    if (exerciseSearch) {
+      exerciseSearch.addEventListener('input', (e) => this.handleExerciseSearch(e.target.value));
+      exerciseSearch.addEventListener('focus', () => this.showSearchResults());
+      exerciseSearch.addEventListener('blur', () => {
+        // Delay hiding to allow clicking on results
+        setTimeout(() => this.hideSearchResults(), 200);
       });
     }
+
+    if (addExerciseBtn) {
+      addExerciseBtn.addEventListener('click', () => this.handleAddExercise());
+    }
+
+    // Hide search results when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        this.hideSearchResults();
+      }
+    });
 
     // Manual entry functionality
     const manualAddBtn = document.getElementById('manual-add-btn');
@@ -109,32 +124,160 @@ class SetsByMuscleApp {
     }
   }
 
-  async handleQuickAdd() {
-    const input = document.getElementById('quick-add-input');
-    const feedback = document.getElementById('quick-add-feedback');
+      handleExerciseSearch(query) {
+    if (!query.trim()) {
+      this.hideSearchResults();
+      return;
+    }
 
-    if (!input || !feedback) return;
+    console.log('🔍 Searching for:', query);
+    const results = this.exerciseDatabase.searchExercises(query);
+    console.log('📋 Search results:', results);
+    this.displaySearchResults(results);
+  }
 
-    const text = input.value.trim();
-    if (!text) {
-      this.showFeedback('Please enter an exercise description.', 'error');
+    displaySearchResults(results) {
+    const searchResults = document.getElementById('search-results');
+    if (!searchResults) return;
+
+    if (results.length === 0) {
+      searchResults.innerHTML = '<div class="search-result-item"><p>No exercises found</p></div>';
+      searchResults.classList.remove('hidden');
+      return;
+    }
+
+    searchResults.innerHTML = results.map(exercise => {
+      const primaryMuscles = Object.entries(exercise.muscleGroups)
+        .filter(([, allocation]) => allocation >= 0.5)
+        .map(([muscle]) => muscle);
+
+      const secondaryMuscles = Object.entries(exercise.muscleGroups)
+        .filter(([, allocation]) => allocation < 0.5 && allocation > 0)
+        .map(([muscle]) => muscle);
+
+      return `
+        <div class="search-result-item" data-exercise-id="${exercise.id}">
+          <div class="search-result-name">${exercise.displayName}</div>
+          <div class="search-result-muscles">
+            <span class="primary-muscles">💪 ${primaryMuscles.join(', ')}</span>
+            ${secondaryMuscles.length > 0 ? `<span class="secondary-muscles">• ${secondaryMuscles.join(', ')}</span>` : ''}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Add click handlers
+    searchResults.querySelectorAll('.search-result-item').forEach(item => {
+      item.addEventListener('click', () => this.selectExercise(item.dataset.exerciseId));
+    });
+
+    searchResults.classList.remove('hidden');
+  }
+
+  selectExercise(exerciseId) {
+    const exercise = this.exerciseDatabase.getExerciseById(exerciseId);
+    if (!exercise) return;
+
+    // Update UI to show exercise details
+    const exerciseDetails = document.getElementById('exercise-details');
+    const exerciseName = document.getElementById('selected-exercise-name');
+    const exerciseDescription = document.getElementById('selected-exercise-description');
+    const muscleTags = document.getElementById('muscle-tags');
+    const setsInput = document.getElementById('sets-input');
+    const repsInput = document.getElementById('reps-input');
+
+    if (exerciseDetails && exerciseName && exerciseDescription && muscleTags) {
+      exerciseName.textContent = exercise.displayName;
+      exerciseDescription.textContent = exercise.description;
+
+      // Create muscle tags
+      muscleTags.innerHTML = Object.keys(exercise.muscleGroups).map(muscle =>
+        `<span class="muscle-tag">${muscle}</span>`
+      ).join('');
+
+      // Set default values
+      if (setsInput) setsInput.value = exercise.defaultSets || 3;
+      if (repsInput) repsInput.value = exercise.defaultReps || 8;
+
+      exerciseDetails.classList.remove('hidden');
+    }
+
+    // Hide search results
+    this.hideSearchResults();
+
+    // Store selected exercise
+    this.selectedExercise = exercise;
+  }
+
+  showSearchResults() {
+    const searchResults = document.getElementById('search-results');
+    if (searchResults && searchResults.children.length > 0) {
+      searchResults.classList.remove('hidden');
+    }
+  }
+
+  hideSearchResults() {
+    const searchResults = document.getElementById('search-results');
+    if (searchResults) {
+      searchResults.classList.add('hidden');
+    }
+  }
+
+  async handleAddExercise() {
+    if (!this.selectedExercise) {
+      this.showFeedback('Please select an exercise first.', 'error');
+      return;
+    }
+
+    const setsInput = document.getElementById('sets-input');
+    const repsInput = document.getElementById('reps-input');
+    const weightInput = document.getElementById('weight-input');
+
+    if (!setsInput || !repsInput || !weightInput) return;
+
+    const sets = parseInt(setsInput.value);
+    const reps = parseInt(repsInput.value);
+    const weight = parseFloat(weightInput.value);
+
+    if (isNaN(sets) || sets < 1) {
+      this.showFeedback('Please enter a valid number of sets.', 'error');
+      return;
+    }
+
+    if (isNaN(reps) || reps < 1) {
+      this.showFeedback('Please enter a valid number of reps.', 'error');
       return;
     }
 
     try {
-      const result = await this.trainingTracker.addQuickEntry(text, this.currentDate);
+      await this.trainingTracker.addExerciseEntry(
+        this.selectedExercise,
+        sets,
+        reps,
+        weight,
+        this.currentDate
+      );
 
-      if (result.success) {
-        this.showFeedback(`Added ${result.sets} sets for ${result.exercise}`, 'success');
-        input.value = '';
-        this.updateUI();
-      } else {
-        this.showFeedback(result.error, 'error');
-      }
+      this.showFeedback(`Added ${sets} sets of ${this.selectedExercise.displayName}`, 'success');
+
+      // Reset form
+      this.resetExerciseForm();
+      this.updateUI();
+
     } catch (error) {
       this.showFeedback('Failed to add exercise. Please try again.', 'error');
-      console.error('Quick add error:', error);
+      console.error('Add exercise error:', error);
     }
+  }
+
+  resetExerciseForm() {
+    const exerciseDetails = document.getElementById('exercise-details');
+    const exerciseSearch = document.getElementById('exercise-search');
+
+    if (exerciseDetails) exerciseDetails.classList.add('hidden');
+    if (exerciseSearch) exerciseSearch.value = '';
+
+    this.selectedExercise = null;
   }
 
   async handleManualAdd() {
@@ -262,8 +405,8 @@ class SetsByMuscleApp {
     }
   }
 
-  showFeedback(message, type = 'info') {
-    const feedback = document.getElementById('quick-add-feedback');
+    showFeedback(message, type = 'info') {
+    const feedback = document.getElementById('exercise-feedback');
     if (!feedback) return;
 
     feedback.textContent = message;

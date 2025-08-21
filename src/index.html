@@ -54,27 +54,59 @@
 
     <!-- Main Content -->
     <main class="main-content">
-      <!-- Quick Add Section -->
-      <section class="quick-add-section">
+            <!-- Exercise Search Section -->
+      <section class="exercise-search-section">
         <div class="section-header">
-          <h2>Quick Add Exercise</h2>
-          <p class="section-description">Type like: "3 sets bench" or "squat 5"</p>
+          <h2>Add Exercise</h2>
+          <p class="section-description">Search and add exercises with sets, reps, and weights</p>
         </div>
 
-        <div class="quick-add-form">
-          <input
-            type="text"
-            id="quick-add-input"
-            class="quick-add-input"
-            placeholder="e.g., 3 sets bench"
-            maxlength="100"
-          >
-          <button type="button" id="quick-add-btn" class="btn btn-primary">
-            Add Sets
-          </button>
+        <div class="exercise-search-form">
+                      <div class="search-container">
+              <input
+                type="text"
+                id="exercise-search"
+                class="exercise-search-input"
+                placeholder="Search exercises or muscle groups (e.g., bench, squat, bicep, chest)..."
+                maxlength="100"
+              >
+              <div id="search-results" class="search-results hidden"></div>
+              <div class="search-tips">
+                <small>💡 Try searching by exercise name, muscle group, or category (push, pull, legs, core)</small>
+              </div>
+            </div>
+
+          <div class="exercise-details hidden" id="exercise-details">
+            <div class="exercise-info">
+              <h3 id="selected-exercise-name"></h3>
+              <p id="selected-exercise-description"></p>
+              <div class="muscle-tags" id="muscle-tags"></div>
+            </div>
+
+            <div class="exercise-inputs">
+              <div class="input-group">
+                <label for="sets-input">Sets:</label>
+                <input type="number" id="sets-input" class="number-input" min="1" max="20" value="3">
+              </div>
+
+              <div class="input-group">
+                <label for="reps-input">Reps:</label>
+                <input type="number" id="reps-input" class="number-input" min="1" max="100" value="8">
+              </div>
+
+              <div class="input-group">
+                <label for="weight-input">Weight (kg):</label>
+                <input type="number" id="weight-input" class="number-input" min="0" max="1000" step="0.5" value="0">
+              </div>
+
+              <button type="button" id="add-exercise-btn" class="btn btn-primary">
+                Add Exercise
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div id="quick-add-feedback" class="feedback hidden"></div>
+        <div id="exercise-feedback" class="feedback hidden"></div>
       </section>
 
       <!-- Manual Entry Section -->

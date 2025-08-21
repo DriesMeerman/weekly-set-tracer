@@ -137,22 +137,42 @@ export class UIManager {
     });
   }
 
-  createEntryElement(entry) {
+    createEntryElement(entry) {
     const div = document.createElement('div');
     div.className = 'entry-item';
     div.style.padding = 'var(--spacing-sm)';
     div.style.borderBottom = '1px solid var(--border-color)';
 
-    const type = entry.type === 'quick' ? 'Quick Add' : 'Manual';
-    const muscles = Object.keys(entry.muscleSets).join(', ');
-    const sets = Object.values(entry.muscleSets).reduce((sum, val) => sum + val, 0);
+    if (entry.type === 'exercise') {
+      const muscles = Object.keys(entry.muscleSets).join(', ');
+      const weightText = entry.weight > 0 ? ` @ ${entry.weight}kg` : '';
 
-    div.innerHTML = `
-      <div style="display: flex; justify-content: space-between; align-items: center;">
-        <span><strong>${type}</strong>: ${muscles}</span>
-        <span style="color: var(--primary-color); font-weight: 600;">${sets.toFixed(1)} sets</span>
-      </div>
-    `;
+      div.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <strong>${entry.exerciseName}</strong>
+            <div style="font-size: 0.875rem; color: var(--text-secondary);">
+              ${entry.sets} × ${entry.reps}${weightText} • ${muscles}
+            </div>
+          </div>
+          <span style="color: var(--primary-color); font-weight: 600;">
+            ${entry.sets} sets
+          </span>
+        </div>
+      `;
+    } else {
+      // Handle manual entries
+      const type = entry.type === 'manual' ? 'Manual' : 'Quick Add';
+      const muscles = Object.keys(entry.muscleSets).join(', ');
+      const sets = Object.values(entry.muscleSets).reduce((sum, val) => sum + val, 0);
+
+      div.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span><strong>${type}</strong>: ${muscles}</span>
+          <span style="color: var(--primary-color); font-weight: 600;">${sets.toFixed(1)} sets</span>
+        </div>
+      `;
+    }
 
     return div;
   }

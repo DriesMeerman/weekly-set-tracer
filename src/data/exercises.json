@@ -6,14 +6,18 @@
       "id": "bench",
       "name": "bench",
       "displayName": "Bench Press",
-      "aliases": ["bench press", "bench", "chest press"],
+      "aliases": ["bench press", "bench", "chest press", "barbell bench", "flat bench"],
       "muscleGroups": {
         "Chest": 1.0,
         "Triceps": 0.5,
         "Front Delts": 0.33
       },
       "category": "push",
-      "description": "Compound chest exercise that primarily targets chest with secondary triceps and front deltoid activation"
+      "description": "Compound chest exercise that primarily targets chest with secondary triceps and front deltoid activation",
+      "defaultReps": 8,
+      "defaultSets": 3,
+      "equipment": ["barbell", "bench"],
+      "difficulty": "intermediate"
     },
     {
       "id": "squat",
