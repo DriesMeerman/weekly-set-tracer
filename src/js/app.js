@@ -6,6 +6,7 @@ import { TrainingTracker } from './modules/training-tracker.js';
 import { DataManager } from './modules/data-manager.js';
 import { UIManager } from './modules/ui-manager.js';
 import { ChartRenderer } from './modules/chart-renderer.js';
+import { MuscleVisualizer } from './modules/muscle-visualizer.js';
 
 class SetsByMuscleApp {
     constructor() {
@@ -14,6 +15,7 @@ class SetsByMuscleApp {
     this.dataManager = new DataManager();
     this.uiManager = new UIManager();
     this.chartRenderer = new ChartRenderer();
+    this.muscleVisualizer = new MuscleVisualizer();
 
     this.currentDate = new Date();
     this.windowDays = 7;
@@ -27,12 +29,27 @@ class SetsByMuscleApp {
       console.log('🏋️  Initializing Sets by Muscle...');
 
       // Initialize components
-      await this.exerciseDatabase.init();
-      console.log('📚 Exercise database loaded with', this.exerciseDatabase.getAllExercises().length, 'exercises');
-      await this.trainingTracker.init();
-      this.dataManager.init();
-      this.uiManager.init();
-      this.chartRenderer.init();
+              await this.exerciseDatabase.init();
+        console.log('📚 Exercise database loaded with', this.exerciseDatabase.getAllExercises().length, 'exercises');
+        await this.trainingTracker.init();
+        this.dataManager.init();
+        this.uiManager.init();
+        this.chartRenderer.init();
+        console.log('🏗️ About to initialize muscle visualizer...');
+        await this.muscleVisualizer.init();
+        console.log('✅ Muscle visualizer initialization complete');
+
+        // Small delay to ensure DOM is ready, then check SVG rendering
+        setTimeout(() => {
+          console.log('⏰ First timeout - checking SVG rendering...');
+          this.muscleVisualizer.checkAndRender();
+        }, 500);
+
+        // Additional check after a longer delay
+        setTimeout(() => {
+          console.log('⏰ Second timeout - checking SVG rendering...');
+          this.muscleVisualizer.checkAndRender();
+        }, 2000);
 
       // Set up event listeners
       this.setupEventListeners();
@@ -375,6 +392,12 @@ class SetsByMuscleApp {
       const history = await this.trainingTracker.getTrainingHistory();
       this.uiManager.updateTrainingHistory(history);
 
+      // Update muscle visualization
+      this.updateMuscleVisualization();
+
+      // Ensure muscle diagram is rendered
+      this.muscleVisualizer.checkAndRender();
+
     } catch (error) {
       console.error('Failed to update UI:', error);
     }
@@ -528,6 +551,21 @@ class SetsByMuscleApp {
           input.style.boxShadow = '';
         });
       });
+    }
+  }
+
+  updateMuscleVisualization() {
+    try {
+      // Calculate muscle intensity from training data
+      const trainingData = this.trainingTracker.getTrainingHistory();
+      const muscleIntensity = this.muscleVisualizer.calculateMuscleIntensity(trainingData, this.windowDays);
+
+      // Update the muscle visualizer
+      this.muscleVisualizer.updateMuscleData(muscleIntensity);
+
+      console.log('💪 Muscle visualization updated with intensity data:', muscleIntensity);
+    } catch (error) {
+      console.error('❌ Failed to update muscle visualization:', error);
     }
   }
 

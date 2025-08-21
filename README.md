@@ -24,12 +24,20 @@ A lightweight, front-end-only web application for tracking strength training set
 - **Rolling Totals**: View muscle group totals over customizable windows (3/7/14/28 days)
 - **Bar Charts**: See your most-trained muscle groups at a glance
 - **Muscle Heat Map**: Visual representation where redder = more training volume
+- **Interactive Muscle Diagrams**: SVG muscle diagrams with dynamic highlighting based on training intensity
 - **Target Status**: Get hints on whether you're under, good, or over your weekly targets
 
 ### 🔍 Search & History
 - **Advanced Search**: Filter by date range, text, or muscle group
 - **Training History**: Browse all your training days with notes and summaries
 - **Data Export/Import**: Backup your data as JSON or restore from backups
+
+### 💪 Muscle Visualization
+- **Interactive Diagrams**: Front and back view muscle diagrams with hover tooltips
+- **Dynamic Highlighting**: Muscles are colored based on training intensity (yellow → red scale)
+- **View Switching**: Toggle between front and back muscle views
+- **Touch Optimized**: Mobile-friendly interactions with touch feedback
+- **Real-time Updates**: Muscle highlighting updates automatically based on your training data
 
 ## 🚀 Quick Start
 

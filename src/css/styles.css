@@ -524,6 +524,122 @@ body {
   background-color: rgb(37 99 235 / 0.1);
 }
 
+/* Muscle Visualization Section */
+.muscle-visualization-section {
+  background-color: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.view-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.intensity-legend {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.muscle-diagram-container {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background-color: #f8fafc;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  /* Debug: Add border to see container */
+  border: 3px solid #f59e0b;
+  min-height: 500px;
+}
+
+.muscle-diagram {
+  max-width: 100%;
+  height: auto;
+  min-height: 400px; /* Ensure minimum height for SVG */
+  /* Debug: Add border to see diagram area */
+  border: 2px solid #8b5cf6;
+  background-color: #faf5ff;
+}
+
+.muscle-diagram svg {
+  max-width: 100%;
+  height: auto;
+  min-height: 400px; /* Ensure SVG has height */
+  width: 100%; /* Force full width */
+  display: block; /* Ensure block display */
+  filter: drop-shadow(0 4px 6px rgb(0 0 0 / 0.1));
+  /* Debug: Add border to see SVG boundaries */
+  border: 2px solid #ef4444;
+}
+
+/* Muscle Tooltip */
+.muscle-tooltip {
+  position: fixed;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm);
+  box-shadow: var(--shadow-lg);
+  font-size: 0.875rem;
+  z-index: 1000;
+  display: none;
+  min-width: 150px;
+}
+
+.tooltip-header {
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.tooltip-content {
+  color: var(--text-secondary);
+}
+
+.intensity-bar {
+  width: 100%;
+  height: 8px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  margin: var(--spacing-xs) 0;
+  overflow: hidden;
+}
+
+.intensity-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #dbeafe, #dc2626);
+  transition: width 0.3s ease;
+}
+
+.intensity-text {
+  font-size: 0.75rem;
+  text-align: center;
+}
+
 /* Day Summary Section */
 .day-summary-section {
   background-color: var(--bg-primary);
@@ -921,6 +1037,31 @@ body {
     height: auto;
   }
 
+  /* Mobile-friendly muscle visualization */
+  .muscle-visualization-section {
+    padding: var(--spacing-lg);
+  }
+
+  .view-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+
+  .intensity-legend {
+    justify-content: center;
+    gap: var(--spacing-sm);
+  }
+
+  .muscle-diagram-container {
+    padding: var(--spacing-md);
+  }
+
+  .muscle-diagram svg {
+    max-width: 100%;
+    height: auto;
+  }
+
   /* Mobile-friendly muscle totals */
   .muscle-total-item {
     flex-direction: column;
@@ -1053,5 +1194,15 @@ body {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgb(37 99 235 / 0.1);
+  }
+
+  /* Mobile-friendly muscle tooltip */
+  .muscle-tooltip {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 90vw;
+    z-index: 1001;
   }
 }

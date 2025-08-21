@@ -109,7 +109,69 @@
         <div id="exercise-feedback" class="feedback hidden"></div>
       </section>
 
-
+      <!-- Muscle Visualization Section -->
+      <section class="muscle-visualization-section">
+        <div class="section-header">
+          <h2>Muscle Activation Map</h2>
+          <p class="section-description">Visual representation of muscle group activation</p>
+          <div class="view-controls">
+            <button type="button" id="view-toggle" class="btn btn-secondary">
+              🔄 Show Back
+            </button>
+            <button type="button" id="debug-render" class="btn btn-text">
+              🐛 Debug Render
+            </button>
+            <button type="button" id="test-svg" class="btn btn-text">
+              🧪 Test SVG
+            </button>
+            <button type="button" id="test-sample-data" class="btn btn-text">
+              📊 Test Data
+            </button>
+            <button type="button" id="force-show" class="btn btn-text">
+              🆘 Force Show
+            </button>
+            <div class="intensity-legend">
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #dbeafe;"></span>
+                <span>Low</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #93c5fd;"></span>
+                <span>Medium</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #3b82f6;"></span>
+                <span>High</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #1d4ed8;"></span>
+                <span>Very High</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #dc2626;"></span>
+                <span>Max</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="muscle-diagram-container">
+          <div id="muscle-diagram" class="muscle-diagram">
+            <!-- Basic test SVG to verify rendering works -->
+            <svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 400px;">
+              <rect width="300" height="600" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+              <text x="150" y="300" text-anchor="middle" font-size="24" fill="#374151">
+                Muscle Diagram Loading...
+              </text>
+              <text x="150" y="330" text-anchor="middle" font-size="16" fill="#6b7280">
+                Click "Test SVG" to load full diagram
+              </text>
+              <!-- Test muscle -->
+              <circle cx="150" cy="200" r="25" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+              <text x="150" y="205" text-anchor="middle" font-size="12" fill="#1e40af">Chest</text>
+            </svg>
+          </div>
+        </div>
+      </section>
 
       <!-- Day Summary Section -->
       <section class="day-summary-section">
