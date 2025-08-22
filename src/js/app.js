@@ -392,11 +392,21 @@ class SetsByMuscleApp {
       const history = await this.trainingTracker.getTrainingHistory();
       this.uiManager.updateTrainingHistory(history);
 
-      // Update muscle visualization
-      this.updateMuscleVisualization();
+              // Update muscle visualization
+        this.updateMuscleVisualization();
 
-      // Ensure muscle diagram is rendered
-      this.muscleVisualizer.checkAndRender();
+        // Ensure muscle diagram is rendered
+        this.muscleVisualizer.checkAndRender();
+
+        // Debug: Check if we have any training data
+        const trainingData = this.trainingTracker.getTrainingHistory();
+        if (trainingData.length === 0) {
+          console.log('⚠️ No training data found. Creating sample data for testing...');
+          // Create a sample workout to test muscle highlighting
+          await this.createSampleWorkout();
+          // Update visualization again
+          this.updateMuscleVisualization();
+        }
 
     } catch (error) {
       console.error('Failed to update UI:', error);
@@ -556,14 +566,25 @@ class SetsByMuscleApp {
 
   updateMuscleVisualization() {
     try {
+      console.log('🔄 Updating muscle visualization...');
+
       // Calculate muscle intensity from training data
       const trainingData = this.trainingTracker.getTrainingHistory();
+      console.log('📊 Raw training data:', trainingData);
+      console.log('📊 Training data length:', trainingData.length);
+
+      if (trainingData.length > 0) {
+        console.log('📊 First day sample:', trainingData[0]);
+        console.log('📊 First day entries:', trainingData[0].entries);
+      }
+
       const muscleIntensity = this.muscleVisualizer.calculateMuscleIntensity(trainingData, this.windowDays);
+      console.log('💪 Calculated muscle intensity:', muscleIntensity);
 
       // Update the muscle visualizer
       this.muscleVisualizer.updateMuscleData(muscleIntensity);
 
-      console.log('💪 Muscle visualization updated with intensity data:', muscleIntensity);
+      console.log('✅ Muscle visualization updated successfully');
     } catch (error) {
       console.error('❌ Failed to update muscle visualization:', error);
     }
@@ -571,6 +592,50 @@ class SetsByMuscleApp {
 
   formatDate(date) {
     return date.toISOString().split('T')[0];
+  }
+
+  /**
+   * Create a sample workout for testing muscle visualization
+   */
+  async createSampleWorkout() {
+    try {
+      console.log('🏋️ Creating sample workout for testing...');
+
+      // Get today's date
+      const today = new Date();
+      const yesterday = new Date(today.getTime() - 24 * 60 * 60 * 1000);
+
+      // Create a chest/triceps workout
+      await this.trainingTracker.addExerciseEntry(
+        'bench-press',
+        3, // sets
+        8, // reps
+        135, // weight
+        today
+      );
+
+      // Create a back workout
+      await this.trainingTracker.addExerciseEntry(
+        'barbell-row',
+        3, // sets
+        10, // reps
+        95, // weight
+        yesterday
+      );
+
+      // Create a leg workout
+      await this.trainingTracker.addExerciseEntry(
+        'squat',
+        4, // sets
+        6, // reps
+        185, // weight
+        today
+      );
+
+      console.log('✅ Sample workout created successfully');
+    } catch (error) {
+      console.error('❌ Failed to create sample workout:', error);
+    }
   }
 }
 
