@@ -6,6 +6,12 @@ A lightweight, front-end-only web application for tracking strength training set
 
 **Sets by Muscle** is a single-page web app that runs entirely in your browser with no backend required. It helps you:
 
+## 🌐 Live Demo
+
+**[View the live app here](https://[YOUR_USERNAME].github.io/laila-muslce/)**
+
+> **Note:** Replace `[YOUR_USERNAME]` with your actual GitHub username in the URL above.
+
 - Quickly log sets per muscle group for specific training days
 - Visualize your training balance with bar charts and muscle heat maps
 - Track weekly targets (10-15 sets per muscle group recommended)
@@ -72,6 +78,25 @@ npm run build
 ```
 
 This creates a `dist/` folder with optimized files ready for deployment.
+
+## 🚀 Deployment
+
+### GitHub Pages (Automatic)
+
+This project is configured for automatic deployment to GitHub Pages:
+
+1. **Push to main branch** - The GitHub Action automatically builds and deploys
+2. **No manual steps required** - Every push triggers a new deployment
+3. **Live at** `https://[YOUR_USERNAME].github.io/laila-muslce/`
+
+### Manual Deployment
+
+For other hosting platforms:
+
+```bash
+npm run build
+# Upload the contents of the dist/ folder to your web server
+```
 
 ## 🛠️ Build Tooling
 
