@@ -112,3 +112,4 @@ backups/
 
 # Local development
 .local/
+.vite
