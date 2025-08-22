@@ -8,7 +8,7 @@ A lightweight, front-end-only web application for tracking strength training set
 
 ## 🌐 Live Demo
 
-**[View the live app here](https://[YOUR_USERNAME].github.io/laila-muslce/)**
+**[View the live app here](https://driesmeerman.github.io/weekly-set-tracer/)**
 
 > **Note:** Replace `[YOUR_USERNAME]` with your actual GitHub username in the URL above.
 

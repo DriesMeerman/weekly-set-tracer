@@ -1,6 +1,9 @@
 // Sets by Muscle - Main Application
 // A lightweight web app for tracking strength training sets per muscle group
 
+// Import styles
+import '../css/styles.css';
+
 import { ExerciseDatabase } from './modules/exercise-database.js';
 import { TrainingTracker } from './modules/training-tracker.js';
 import { DataManager } from './modules/data-manager.js';
