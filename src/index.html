@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Track strength training sets per muscle group with visual analytics and smart insights">
+  <meta name="keywords" content="fitness, strength training, muscle tracking, workout log, exercise tracking">
+  <meta name="author" content="Sets by Muscle">
+
+  <title>Sets by Muscle 💪</title>
+
+  <!-- PWA Meta Tags -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sets by Muscle">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <!-- App Container -->
+  <div id="app" class="app">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <h1 class="app-title">
+          <span class="title-icon">💪</span>
+          Sets by Muscle
+        </h1>
+
+        <div class="header-controls">
+          <div class="date-picker">
+            <label for="training-date">Training Date:</label>
+            <input type="date" id="training-date" class="date-input">
+          </div>
+
+          <div class="window-selector">
+            <label for="window-days">Window:</label>
+            <select id="window-days" class="window-select">
+              <option value="3">3 days</option>
+              <option value="7" selected>7 days</option>
+              <option value="14">14 days</option>
+              <option value="28">28 days</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+            <!-- Exercise Search Section -->
+      <section class="exercise-search-section">
+        <div class="section-header">
+          <h2>Add Exercise</h2>
+          <p class="section-description">Search and add exercises with sets, reps, and weights</p>
+        </div>
+
+        <div class="exercise-search-form">
+                      <div class="search-container">
+              <input
+                type="text"
+                id="exercise-search"
+                class="exercise-search-input"
+                placeholder="Search exercises or muscle groups (e.g., bench, squat, bicep, chest)..."
+                maxlength="100"
+              >
+              <div id="search-results" class="search-results hidden"></div>
+              <div class="search-tips">
+                <small>💡 Try searching by exercise name, muscle group, or category (push, pull, legs, core)</small>
+              </div>
+            </div>
+
+          <div class="exercise-details hidden" id="exercise-details">
+            <div class="exercise-info">
+              <h3 id="selected-exercise-name"></h3>
+              <p id="selected-exercise-description"></p>
+              <div class="muscle-tags" id="muscle-tags"></div>
+            </div>
+
+            <div class="exercise-inputs">
+              <div class="input-group">
+                <label for="sets-input">Sets:</label>
+                <input type="number" id="sets-input" class="number-input" min="1" max="20" value="3">
+              </div>
+
+              <div class="input-group">
+                <label for="reps-input">Reps:</label>
+                <input type="number" id="reps-input" class="number-input" min="1" max="100" value="8">
+              </div>
+
+              <div class="input-group">
+                <label for="weight-input">Weight (kg):</label>
+                <input type="number" id="weight-input" class="number-input" min="0" max="1000" step="0.5" value="0">
+              </div>
+
+              <button type="button" id="add-exercise-btn" class="btn btn-primary">
+                Add Exercise
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="exercise-feedback" class="feedback hidden"></div>
+      </section>
+
+      <!-- Muscle Visualization Section -->
+      <section class="muscle-visualization-section">
+        <div class="section-header">
+          <h2>Muscle Activation Map</h2>
+          <p class="section-description">Visual representation of muscle group activation</p>
+          <div class="view-controls">
+            <button type="button" id="view-toggle" class="btn btn-secondary">
+              🔄 Show Back
+            </button>
+            <button type="button" id="debug-render" class="btn btn-text">
+              🐛 Debug Render
+            </button>
+            <button type="button" id="test-svg" class="btn btn-text">
+              🧪 Test SVG
+            </button>
+            <button type="button" id="test-sample-data" class="btn btn-text">
+              📊 Test Data
+            </button>
+            <button type="button" id="force-show" class="btn btn-text">
+              🆘 Force Show
+            </button>
+            <div class="intensity-legend">
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #dbeafe;"></span>
+                <span>Low</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #93c5fd;"></span>
+                <span>Medium</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #3b82f6;"></span>
+                <span>High</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #1d4ed8;"></span>
+                <span>Very High</span>
+              </span>
+              <span class="legend-item">
+                <span class="legend-color" style="background-color: #dc2626;"></span>
+                <span>Max</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="muscle-diagram-container">
+          <div id="muscle-diagram" class="muscle-diagram">
+            <!-- Basic test SVG to verify rendering works -->
+            <svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 400px;">
+              <rect width="300" height="600" fill="#f8fafc" stroke="#d1d5db" stroke-width="2"/>
+              <text x="150" y="300" text-anchor="middle" font-size="24" fill="#374151">
+                Muscle Diagram Loading...
+              </text>
+              <text x="150" y="330" text-anchor="middle" font-size="16" fill="#6b7280">
+                Click "Test SVG" to load full diagram
+              </text>
+              <!-- Test muscle -->
+              <circle cx="150" cy="200" r="25" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+              <text x="150" y="205" text-anchor="middle" font-size="12" fill="#1e40af">Chest</text>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Day Summary Section -->
+      <section class="day-summary-section">
+        <div class="section-header">
+          <h2>Training Day Summary</h2>
+          <div class="day-actions">
+            <button type="button" id="edit-note-btn" class="btn btn-text">
+              Edit Note
+            </button>
+          </div>
+        </div>
+
+        <div class="day-summary-card">
+          <div class="day-note">
+            <textarea
+              id="day-note"
+              class="note-textarea"
+              placeholder="Add a note about your training session..."
+              rows="2"
+            ></textarea>
+          </div>
+
+          <div id="day-entries" class="day-entries">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Analytics Section -->
+      <section class="analytics-section">
+        <div class="section-header">
+          <h2>Training Analytics</h2>
+        </div>
+
+        <!-- Totals Panel -->
+        <div class="totals-panel">
+          <h3>Muscle Group Totals</h3>
+          <div id="muscle-totals" class="muscle-totals">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Bar Chart -->
+        <div class="chart-container">
+          <h3>Most Trained Muscle Groups</h3>
+          <div id="bar-chart" class="bar-chart">
+            <!-- SVG chart will be rendered here -->
+          </div>
+        </div>
+
+        <!-- Heat Map -->
+        <div class="heat-map-container">
+          <h3>Training Volume Heat Map</h3>
+          <div id="muscle-heat-map" class="muscle-heat-map">
+            <!-- SVG heat map will be rendered here -->
+          </div>
+          <div class="heat-map-legend">
+                          <span class="legend-item">
+                <span class="legend-color light"></span>
+                Under (&lt;10 sets)
+              </span>
+              <span class="legend-item">
+                <span class="legend-color good"></span>
+                Good (10-15 sets)
+              </span>
+              <span class="legend-item">
+                <span class="legend-color high"></span>
+                High (&gt;15 sets)
+              </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- History Section -->
+      <section class="history-section">
+        <div class="section-header">
+          <h2>Training History</h2>
+        </div>
+
+        <div class="search-filters">
+          <div class="search-box">
+            <input
+              type="text"
+              id="search-input"
+              class="search-input"
+              placeholder="Search notes, exercises..."
+            >
+          </div>
+
+          <div class="filter-controls">
+            <div class="date-range-filter">
+              <label for="date-from">From:</label>
+              <input type="date" id="date-from" class="date-filter">
+            </div>
+
+            <div class="date-range-filter">
+              <label for="date-to">To:</label>
+              <input type="date" id="date-to" class="date-filter">
+            </div>
+
+            <div class="muscle-filter">
+              <label for="muscle-filter">Muscle:</label>
+              <select id="muscle-filter" class="muscle-filter-select">
+                <option value="">All muscles</option>
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="training-history" class="training-history">
+          <!-- Dynamically populated -->
+        </div>
+      </section>
+
+      <!-- Data Controls Section -->
+      <section class="data-controls-section">
+        <div class="section-header">
+          <h2>Data Management</h2>
+        </div>
+
+        <div class="data-controls">
+          <button type="button" id="export-btn" class="btn btn-outline">
+            📤 Export Data
+          </button>
+
+          <label for="import-input" class="btn btn-outline">
+            📥 Import Data
+            <input type="file" id="import-input" accept=".json" class="hidden">
+          </label>
+
+          <button type="button" id="reset-btn" class="btn btn-danger">
+            🗑️ Reset All Data
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="version">v1.0.0</p>
+        <p class="privacy">All data stored locally in your browser</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modals -->
+  <div id="confirm-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3 id="modal-title">Confirm Action</h3>
+      <p id="modal-message">Are you sure you want to proceed?</p>
+      <div class="modal-actions">
+        <button type="button" id="modal-cancel" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="modal-confirm" class="btn btn-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>

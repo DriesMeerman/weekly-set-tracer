@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 300 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .muscle-group {
+        fill: #dbeafe;
+        stroke: #3b82f6;
+        stroke-width: 2;
+        transition: fill 0.3s ease, stroke 0.3s ease;
+        cursor: pointer;
+      }
+      .muscle-group:hover {
+        stroke: #1d4ed8;
+        stroke-width: 3;
+        fill: #bfdbfe;
+      }
+      .muscle-label {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        fill: #1e40af;
+        text-anchor: middle;
+        pointer-events: none;
+        font-weight: bold;
+      }
+      .muscle-highlight {
+        fill: #ef4444;
+        stroke: #dc2626;
+        stroke-width: 3;
+      }
+    </style>
+  </defs>
+
+  <!-- Head and Neck (Back) -->
+  <g id="head-neck-back" class="muscle-group">
+    <ellipse cx="150" cy="50" rx="25" ry="30"/>
+    <rect x="140" y="80" width="20" height="30" rx="10"/>
+  </g>
+
+  <!-- Upper Back -->
+  <g id="upper-back" class="muscle-group">
+    <path d="M 100 120 Q 150 140 200 120 L 200 200 Q 150 220 100 200 Z"/>
+    <path d="M 120 130 Q 150 145 180 130 L 180 190 Q 150 205 120 190 Z"/>
+  </g>
+
+  <!-- Shoulders (Back) -->
+  <g id="shoulders-back" class="muscle-group">
+    <ellipse cx="80" cy="130" rx="20" ry="15"/>
+    <ellipse cx="220" cy="130" rx="20" ry="15"/>
+  </g>
+
+  <!-- Lats -->
+  <g id="lats" class="muscle-group">
+    <path d="M 90 180 Q 150 200 210 180 L 210 280 Q 150 300 90 280 Z"/>
+    <path d="M 100 190 Q 150 205 200 190 L 200 270 Q 150 285 100 270 Z"/>
+  </g>
+
+  <!-- Triceps (Back) -->
+  <g id="triceps-back" class="muscle-group">
+    <ellipse cx="70" cy="220" rx="12" ry="20"/>
+    <ellipse cx="230" cy="220" rx="12" ry="20"/>
+  </g>
+
+  <!-- Forearms (Back) -->
+  <g id="forearms-back" class="muscle-group">
+    <ellipse cx="65" cy="260" rx="10" ry="18"/>
+    <ellipse cx="235" cy="260" rx="10" ry="18"/>
+  </g>
+
+  <!-- Lower Back -->
+  <g id="lower-back" class="muscle-group">
+    <rect x="130" y="200" width="40" height="80" rx="5"/>
+    <line x1="150" y1="200" x2="150" y2="280" stroke="#9ca3af" stroke-width="1"/>
+  </g>
+
+  <!-- Glutes (Back) -->
+  <g id="glutes-back" class="muscle-group">
+    <ellipse cx="150" cy="320" rx="25" ry="20"/>
+  </g>
+
+  <!-- Hamstrings (Back) -->
+  <g id="hamstrings-back" class="muscle-group">
+    <ellipse cx="120" cy="360" rx="15" ry="25"/>
+    <ellipse cx="180" cy="360" rx="15" ry="25"/>
+    <ellipse cx="120" cy="400" rx="12" ry="20"/>
+    <ellipse cx="180" cy="400" rx="12" ry="20"/>
+  </g>
+
+  <!-- Calves (Back) -->
+  <g id="calves-back" class="muscle-group">
+    <ellipse cx="120" cy="450" rx="12" ry="25"/>
+    <ellipse cx="180" cy="450" rx="12" ry="25"/>
+  </g>
+
+  <!-- Muscle Labels -->
+  <text x="150" y="45" class="muscle-label">Head</text>
+  <text x="150" y="95" class="muscle-label">Neck</text>
+  <text x="150" y="160" class="muscle-label">Upper Back</text>
+  <text x="80" y="125" class="muscle-label">Shoulders</text>
+  <text x="220" y="125" class="muscle-label">Shoulders</text>
+  <text x="150" y="230" class="muscle-label">Lats</text>
+  <text x="70" y="215" class="muscle-label">Triceps</text>
+  <text x="230" y="215" class="muscle-label">Triceps</text>
+  <text x="65" y="255" class="muscle-label">Forearms</text>
+  <text x="235" y="255" class="muscle-label">Forearms</text>
+  <text x="150" y="190" class="muscle-label">Lower Back</text>
+  <text x="150" y="315" class="muscle-label">Glutes</text>
+  <text x="120" y="355" class="muscle-label">Hamstrings</text>
+  <text x="180" y="355" class="muscle-label">Hamstrings</text>
+  <text x="120" y="445" class="muscle-label">Calves</text>
+  <text x="180" y="445" class="muscle-label">Calves</text>
+</svg>
